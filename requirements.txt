@@ -1,6 +1,7 @@
 asgiref==3.5.1
+autopep8==1.6.0
 Django==3.2.13
 psycopg2-binary==2.9.3
 pytz==2022.1
 sqlparse==0.4.2
-yapf==0.32.0
+toml==0.10.2
