@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Login - RESERVÁ{% endblock %}
+
+{% block content %}
+  <h2>Log In</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Log In</button>
+    <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
+    <p><a href="{% url 'player_signup' %}">Sign Up</a></p>
+  </form>
+{% endblock %}
