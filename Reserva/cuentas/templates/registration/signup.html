@@ -1,12 +1,85 @@
-{% extends "base.html" %}
+{% extends "base_site.html" %}
 
 {% block title %}Sign Up - RESERVÁ{% endblock %}
 
+{% block body_class %} hold-transition register-page{% endblock body_class %}
+<style>
+  ul
+  {
+    padding: 100%;
+  }
+</style>
+
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign Up</button>
-  </form>
-{% endblock %}
+<div class="register-box">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="../../index2.html" class="h1">RESERVÁ</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Registrar un nuevo usuario</p>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {% if form.is_owner %}
+        {{ form.is_owner.errors }}
+        {{ form.is_owner }}
+        {% endif %}
+
+        <div class="input-group mb-3">
+          {{ form.complete_name.errors }}
+          {{ form.complete_name }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          {{ form.email.errors }}
+          {{ form.email }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          {{ form.dni.errors }}
+          {{ form.dni }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-id-card"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          {{ form.password1.errors }}
+          {{ form.password1 }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          {{ form.password2.errors }}
+          {{ form.password2 }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+          </div>
+        </div>
+      </form>
+      <a href="{% url 'login' %}" class="text-center">Ya tengo cuenta</a>
+    </div>
+  </div>
+</div>
+{% endblock content%}

@@ -28,12 +28,12 @@ class PlayerCreationForm(forms.ModelForm):
     password1 = forms.CharField(
         label=_("Password"),
         strip=False,
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'class': 'form-control', 'placeholder': 'Contraseña'}),
         help_text=password_validation.password_validators_help_text_html(),
     )
     password2 = forms.CharField(
         label=_("Password confirmation"),
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'class': 'form-control', 'placeholder': 'Confirmar contraseña'}),
         strip=False,
         help_text=_("Enter the same password as before, for verification."),
     )
@@ -41,6 +41,29 @@ class PlayerCreationForm(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ("email", "dni", "complete_name")
+        widgets = {
+            'email': forms.EmailInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Email',
+                    'autocomplete': 'off'
+                }
+            ),
+            'dni': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'DNI',
+                    'autocomplete': 'off'
+                }
+            ),
+            'complete_name': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Nombre completo',
+                    'autocomplete': 'off'
+                }
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -88,12 +111,12 @@ class OwnerCreationForm(forms.ModelForm):
     password1 = forms.CharField(
         label=_("Password"),
         strip=False,
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'class': 'form-control', 'placeholder': 'Contraseña'}),
         help_text=password_validation.password_validators_help_text_html(),
     )
     password2 = forms.CharField(
         label=_("Password confirmation"),
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'class': 'form-control', 'placeholder': 'Confirmar contraseña'}),
         strip=False,
         help_text=_("Enter the same password as before, for verification."),
     )
@@ -101,6 +124,29 @@ class OwnerCreationForm(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ("email", "dni", "complete_name", "is_owner")
+        widgets = {
+            'email': forms.EmailInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Email',
+                    'autocomplete': 'off'
+                }
+            ),
+            'dni': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'DNI',
+                    'autocomplete': 'off'
+                }
+            ),
+            'complete_name': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Nombre completo',
+                    'autocomplete': 'off'
+                }
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

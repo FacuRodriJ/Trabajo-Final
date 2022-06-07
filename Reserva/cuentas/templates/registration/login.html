@@ -1,14 +1,52 @@
-{% extends "base.html" %}
+{% extends "base_site.html" %}
+{% load widget_tweaks %}
 
-{% block title %}Login - RESERVÁ{% endblock %}
+{% block title %}Login{% endblock %}
+
+{% block body_class %}hold-transition login-page{% endblock body_class %}
 
 {% block content %}
-  <h2>Log In</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log In</button>
-    <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
-    <p><a href="{% url 'player_signup' %}">Sign Up</a></p>
-  </form>
-{% endblock %}
+<div class="login-box">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="{% url 'index' %}" class="h1">RESERVÁ</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Iniciar sesión</p>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="input-group mb-3">
+          {{ form.username.errors }}
+          {{ form.username|add_class:'form-control'|attr:'placeholder:Email' }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          {{ form.password.errors }}
+          {{ form.password|add_class:'form-control'|attr:'placeholder:Contraseña' }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+          </div>
+        </div>
+      </form>
+      <p class="mb-1">
+        <a href="{% url 'password_reset' %}">Olvidé mi contraseña</a>
+      </p>
+      <p class="mb-0">
+        Nuevo en el sitio? <a href="{% url 'player_signup' %}">Registrarse</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock content%}
