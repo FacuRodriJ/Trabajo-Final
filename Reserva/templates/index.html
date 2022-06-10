@@ -1,0 +1,16 @@
+{% extends 'base_site.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+  <h2>PAGINA DE INICIO</h2>
+    {% if user.is_authenticated %}
+        Hi {{ user.complete_name }}!
+        <p><a href="{% url 'logout' %}">Log Out</a></p>
+    {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}">Log In</a>
+        <br>
+        <a href="{% url 'player_signup' %}">Sign Up</a>
+    {% endif %}
+{% endblock %}
