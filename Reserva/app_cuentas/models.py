@@ -40,7 +40,7 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_player', False)
         extra_fields.setdefault('is_owner', False)
-        # El superusuario no es Jugador ni Propietario ya que 
+        # El superusuario no es Jugador ni Propietario, ya que
         # no tendrá asignado una reserva o un establecimiento.
 
         if extra_fields.get('is_staff') is not True:
@@ -81,35 +81,34 @@ class Usuario(AbstractUser):
         return self.complete_name
 
 
-class PerfilJugador(models.Model):
+class Jugador(models.Model):
     user = models.OneToOneField(
         Usuario,
         on_delete=models.CASCADE,
-        related_name='perfil_jugador')
+        related_name='jugador')
+
     # Falta la relación con reservas
 
     class Meta:
-        db_table = CuentasConfig.name + "_" + "perfil_jugador"
+        db_table = CuentasConfig.name + "_" + "jugador"
 
 
-class PerfilPropietario(models.Model):
+class Propietario(models.Model):
     user = models.OneToOneField(
         Usuario,
         on_delete=models.CASCADE,
-        related_name='perfil_propietario'
-    )
-    # Falta la relación con establecimientos
+        related_name='propietario')
 
     class Meta:
-        db_table = CuentasConfig.name + "_" + "perfil_propietario"
+        db_table = CuentasConfig.name + "_" + "propietario"
 
 
 @receiver(post_save, sender=Usuario)
 def create_user_profile(sender, instance, created, **kwargs):
     if instance.is_player:
-        PerfilJugador.objects.get_or_create(user=instance)
+        Jugador.objects.get_or_create(user=instance)
     if instance.is_owner:
-        PerfilPropietario.objects.get_or_create(user=instance)
+        Propietario.objects.get_or_create(user=instance)
 
 
 @receiver(post_save, sender=Usuario)
