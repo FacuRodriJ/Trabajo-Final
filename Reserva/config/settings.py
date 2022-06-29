@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
-    'cuentas'
+    'app_cuentas'
 ]
 
 MIDDLEWARE = [
@@ -131,7 +131,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('index')
 
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
-AUTH_USER_MODEL = "cuentas.Usuario"
+AUTH_USER_MODEL = "app_cuentas.Usuario"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
