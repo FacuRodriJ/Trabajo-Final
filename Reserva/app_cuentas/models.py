@@ -87,8 +87,6 @@ class Jugador(models.Model):
         on_delete=models.CASCADE,
         related_name='jugador')
 
-    # Falta la relación con reservas
-
     class Meta:
         db_table = CuentasConfig.name + "_" + "jugador"
 
@@ -114,6 +112,6 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=Usuario)
 def save_user_profile(sender, instance, **kwargs):
     if instance.is_player:
-        instance.perfil_jugador.save()
+        instance.jugador.save()
     if instance.is_owner:
-        instance.perfil_propietario.save()
+        instance.propietario.save()
