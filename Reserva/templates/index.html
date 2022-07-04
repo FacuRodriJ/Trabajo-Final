@@ -3,14 +3,15 @@
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
-  <h2>PAGINA DE INICIO</h2>
-    {% if user.is_authenticated %}
-        Hi {{ user.complete_name }}!
-        <p><a href="{% url 'logout' %}">Log Out</a></p>
+    {% if user.is_authenticated and user.is_owner %}
+        {% include 'propietario/dashboard.html' %}
+    {% elif user.is_authenticated and user.is_player %}
+        {% include 'jugador/dashboard.html' %}
     {% else %}
+        <!-- Aqui se muestra el contenido que veran los usuarios no autenticados -->
         <p>You are not logged in</p>
         <a href="{% url 'login' %}">Log In</a>
         <br>
         <a href="{% url 'player_signup' %}">Sign Up</a>
     {% endif %}
-{% endblock %}
+{% endblock content %}

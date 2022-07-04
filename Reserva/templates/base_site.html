@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {% block head %}
-            {% block meta %}
-                <meta charset="UTF-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            {% endblock meta %}
+<head>
+    {% block head %}
+        {% block meta %}
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% endblock meta %}
 
-            <title>{% block title %}{% endblock title %} - RESERVÁ</title> 
+        <title>{% block title %}{% endblock title %} - RESERVÁ</title>
 
-            {% block stylesheets %}
-                <!-- Font Awesome -->
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-                <!-- AdminLTE 3 -->
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
-            {% endblock stylesheets %}
-        {% endblock head %}  
-    </head>
+        {% block stylesheets %}
+            <!-- Font Awesome -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+                  integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+                  crossorigin="anonymous" referrerpolicy="no-referrer"/>
+            <!-- AdminLTE 3 -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+        {% endblock stylesheets %}
+    {% endblock head %}
+</head>
+{% if user.is_authenticated and user.is_owner %}
+    <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+{% elif user.is_authenticated and user.is_player %}
+    <body class="hold-transition sidebar-mini layout-fixed">
+{% else %}
     <body class="{% block body_class %}{% endblock body_class %}">
-            {% block content %}
-                <!-- {{ content }} -->
-            {% endblock content %}
-        
-            {% block javascripts %}
-                <!-- jQuery -->
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-                <!-- AdminLTE 3 -->
-                <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
-            {% endblock javascripts %}
-    </body>
+{% endif %}
+
+{% block content %}
+    <!-- Contenido general de la aplicacion -->
+{% endblock content %}
+
+{% block javascripts %}
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- AdminLTE 3 -->
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+{% endblock javascripts %}
+</body>
 </html>
