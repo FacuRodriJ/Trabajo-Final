@@ -57,7 +57,7 @@ class Usuario(AbstractUser):
     first_name = None
     last_name = None
     email = models.EmailField(_('email address'), unique=True)
-    dni = models.CharField(verbose_name='DNI', max_length=150, unique=True)
+    cuit = models.CharField(verbose_name='CUIT', max_length=150, unique=True)
     complete_name = models.CharField(_('complete name'), max_length=150)
     is_player = models.BooleanField(
         _('is player'),
@@ -69,7 +69,7 @@ class Usuario(AbstractUser):
         help_text=_('Designates the user is an establishment owner.'))
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['dni', 'complete_name']
+    REQUIRED_FIELDS = ['cuit', 'complete_name']
 
     objects = CustomUserManager()
 

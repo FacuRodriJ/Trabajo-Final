@@ -20,7 +20,7 @@ from .models import Usuario
 class PlayerCreationForm(forms.ModelForm):
     """
     Un formulario que crea un usuario sin privilegios, con los datos de email,
-    dni, nombre completo y contraseña brindados. Se usa para generar jugadores.
+    cuit, nombre completo y contraseña brindados. Se usa para generar jugadores.
     """
     error_messages = {
         'password_mismatch': _('The two password fields didn’t match.'),
@@ -42,7 +42,7 @@ class PlayerCreationForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ("email", "dni", "complete_name")
+        fields = ("email", "cuit", "complete_name")
         widgets = {
             'email': forms.EmailInput(
                 attrs={
@@ -51,10 +51,10 @@ class PlayerCreationForm(forms.ModelForm):
                     'autocomplete': 'off'
                 }
             ),
-            'dni': forms.TextInput(
+            'cuit': forms.TextInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'DNI',
+                    'placeholder': 'CUIT',
                     'autocomplete': 'off'
                 }
             ),
@@ -104,7 +104,7 @@ class PlayerCreationForm(forms.ModelForm):
 class OwnerCreationForm(forms.ModelForm):
     """
     Un formulario que crea un usuario propietario de uno o más app_establecimientos,
-    con los datos de email, dni, nombre completo, brindados.
+    con los datos de email, cuit, nombre completo, brindados.
     """
     error_messages = {
         'password_mismatch': _('The two password fields didn’t match.'),
@@ -126,7 +126,7 @@ class OwnerCreationForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ("email", "dni", "complete_name", "is_owner")
+        fields = ("email", "cuit", "complete_name", "is_owner")
         widgets = {
             'email': forms.EmailInput(
                 attrs={
@@ -135,10 +135,10 @@ class OwnerCreationForm(forms.ModelForm):
                     'autocomplete': 'off'
                 }
             ),
-            'dni': forms.TextInput(
+            'cuit': forms.TextInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'DNI',
+                    'placeholder': 'CUIT',
                     'autocomplete': 'off'
                 }
             ),
