@@ -3,9 +3,7 @@
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
-    {% if user.is_authenticated and user.is_owner %}
-        {% include 'propietario/dashboard.html' %}
-    {% elif user.is_authenticated and user.is_player %}
+    {% if user.is_authenticated and user.is_player %}
         {% include 'jugador/dashboard.html' %}
     {% else %}
         <!-- Aqui se muestra el contenido que veran los usuarios no autenticados -->
