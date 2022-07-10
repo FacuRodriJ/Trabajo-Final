@@ -7,6 +7,7 @@ from django.db.models.signals import post_save
 from django.utils.translation import gettext_lazy as _
 from django.core.mail import send_mail
 
+from app_core.models import Establecimiento
 from .apps import CuentasConfig
 
 
@@ -94,8 +95,14 @@ class Jugador(models.Model):
 class Propietario(models.Model):
     user = models.OneToOneField(
         Usuario,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         related_name='propietario')
+    establ_en_uso = models.OneToOneField(
+        Establecimiento,
+        null=True,
+        on_delete=models.PROTECT,
+        related_name='establ_en_uso'
+    )
 
     class Meta:
         db_table = CuentasConfig.name + "_" + "propietario"
