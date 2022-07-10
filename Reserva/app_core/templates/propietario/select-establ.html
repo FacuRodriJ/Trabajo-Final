@@ -1,0 +1,12 @@
+{% extends 'base_site.html' %}
+
+{% block title %}Seleccionar Establecimiento{% endblock %}
+
+{% block content %}
+
+    <h1>{{ user.complete_name }} {{ user.propietario.user_id }}</h1>
+    {% for establecimiento in establecimientos %}
+        <h3>{{ establecimiento }}</h3>
+    {% endfor %}
+
+{% endblock content %}

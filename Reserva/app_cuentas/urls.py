@@ -2,11 +2,11 @@ from django.urls import path
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import views
 
-from .views import PlayerSignUpView, OwnerSignUpView
+from .views import PlayerSignUpView, OwnerSignUpView, CustomLoginView
 from .decorators import no_login_required
 
 urlpatterns = [
-    path('login/', no_login_required(views.LoginView.as_view()), name='login'),
+    path('login/', no_login_required(CustomLoginView.as_view()), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
 
     path('password_change/', views.PasswordChangeView.as_view(), name='password_change'),
